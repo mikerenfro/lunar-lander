@@ -8,8 +8,8 @@ import torch
 from torch import nn
 import copy
 import h5py
-device = torch.device("cpu") 
-#device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+# device = torch.device("cpu") 
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 #device = 'mps'
 import warnings
 from torch.distributions import Categorical
@@ -435,14 +435,14 @@ class agent_base():
         #
         # convert lists of current transitions to torch tensors
         state_batch = torch.cat( [s.unsqueeze(0) for s in batch.state],
-                                        dim=0)#.to(device)
+                                        dim=0).to(device)
         # state_batch.shape = [batch_size, N_states]
         next_state_batch = torch.cat(
                          [s.unsqueeze(0) for s in batch.next_state],dim=0)
-        action_batch = torch.cat(batch.action)#.to(device)
+        action_batch = torch.cat(batch.action).to(device)
         # action_batch.shape = [batch_size]
-        reward_batch = torch.cat(batch.reward)#.to(device)
-        done_batch = torch.tensor(batch.done).float()#.to(device)
+        reward_batch = torch.cat(batch.reward).to(device)
+        done_batch = torch.tensor(batch.done).float().to(device)
         #
         return state_batch, action_batch, next_state_batch, \
                         reward_batch, done_batch
