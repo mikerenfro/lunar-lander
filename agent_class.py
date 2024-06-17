@@ -61,9 +61,11 @@ class neural_network(nn.Module):
                 self.network_layers.append( nn.ReLU() )
         #
         self.network_layers = nn.Sequential(*self.network_layers)
+        self.network_layers = self.network_layers.to(device)
         #
 
     def forward(self,x):
+        x = x.to(device)
         for layer in self.network_layers:
             x = layer(x)
         return x
