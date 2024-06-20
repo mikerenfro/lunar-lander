@@ -178,7 +178,7 @@ def create_video(filename_model,episode=-1,N_runs=10,
 files = glob.glob('./trained_agents/data/agent_*_training_data.h5')
 
 algorithms = {0:'actor-critic',
-            1:'dqn',
+            # 1:'dqn',
             }
 best_models = {value:0 for value in algorithms.values()}
 colors = {'actor-critic': 'tab:blue', 'dqn': 'tab:orange', 'ddqn': 'tab:green'}
